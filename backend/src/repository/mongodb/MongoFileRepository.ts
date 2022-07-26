@@ -39,7 +39,7 @@ export class MongoFileRepository implements IFileRepository {
 
     try{
       let result = await fileSchema.findOne({_id: id});
-      if(result === null) throw new Error("Could't find a tutorial");
+      if(result === null) throw new Error("Could't find a File");
       return FileMapper.toDomain(result);
     }catch(err){
         throw err;
