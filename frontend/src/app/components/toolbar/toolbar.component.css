@@ -1,0 +1,5 @@
+mat-toolbar {
+  -webkit-box-shadow: 0 6px 12px -6px black;
+  -moz-box-shadow: 0 12px 12px -6px black;
+  box-shadow: 0 6px 12px -6px black;
+}
