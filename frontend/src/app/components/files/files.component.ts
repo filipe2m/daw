@@ -4,7 +4,7 @@ import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 
-import { File } from 'src/app/interfaces/file';
+import { File } from 'src/app/interfaces/user';
 import { FilesService } from 'src/app/services/files.service';
 import { FilesUpdateComponent } from '../../components/files-update/files-update.component';
 
@@ -36,7 +36,6 @@ export class FilesComponent implements AfterViewInit {
       this.ELEMENT_DATA = files;
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
       this.dataSource.sort = this.sort;
-
     });
   }
 

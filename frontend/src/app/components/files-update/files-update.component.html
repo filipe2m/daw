@@ -10,13 +10,22 @@
   <p>
     <mat-form-field appearance="fill">
       <mat-label>Type</mat-label>
-      <input matInput [(ngModel)]="data.type" />
+      <mat-select [(value)]="selectedType" [(ngModel)]="data.type">
+        <mat-option *ngFor="let type of types" value="{{ type.name }}">
+          {{ type.name }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-  </p>
-  <p>
     <mat-form-field appearance="fill">
       <mat-label>Category</mat-label>
-      <input matInput [(ngModel)]="data.category" />
+      <mat-select [(value)]="selectedCategory" [(ngModel)]="data.category">
+        <mat-option
+          *ngFor="let category of categories"
+          value="{{ category.name }}"
+        >
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </p>
 </div>

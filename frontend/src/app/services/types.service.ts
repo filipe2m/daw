@@ -4,12 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { File } from '../interfaces/user';
+import { Type } from '../interfaces/type';
 
 @Injectable({ providedIn: 'root' })
-export class FilesService {
+export class TypesService {
 
-  private filesUrl = 'http://localhost:3200/api/files';
+  private typesUrl = 'http://localhost:3200/api/types';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,64 +20,64 @@ export class FilesService {
   ) { }
 
   /** GET filees from the server */
-  getFiles(): Observable<File[]> {
-    return this.http.get<File[]>(this.filesUrl)
+  getTypes(): Observable<Type[]> {
+    return this.http.get<Type[]>(this.typesUrl)
       .pipe(
-        catchError(this.handleError<File[]>('getFiles', []))
+        catchError(this.handleError<Type[]>('getTypes', []))
       );
   }
 
   /** GET file by id. Return `undefined` when id not found */
-  getFileNo404<Data>(id: number): Observable<File> {
-    const url = `${this.filesUrl}/?id=${id}`;
-    return this.http.get<File[]>(url)
+  getTypeNo404<Data>(id: number): Observable<Type> {
+    const url = `${this.typesUrl}/?id=${id}`;
+    return this.http.get<Type[]>(url)
       .pipe(
-        map(files => files[0]), // returns a {0|1} element array
-        catchError(this.handleError<File>(`getFile id=${id}`))
+        map(types => types[0]), // returns a {0|1} element array
+        catchError(this.handleError<Type>(`getType id=${id}`))
       );
   }
 
   /** GET file by id. Will 404 if id not found */
-  getFile(id: number): Observable<File> {
-    const url = `${this.filesUrl}/${id}`;
-    return this.http.get<File>(url).pipe(
-      catchError(this.handleError<File>(`getFile id=${id}`))
+  getType(id: number): Observable<Type> {
+    const url = `${this.typesUrl}/${id}`;
+    return this.http.get<Type>(url).pipe(
+      catchError(this.handleError<Type>(`getType id=${id}`))
     );
   }
 
   /* GET filees whose name contains search term */
-  searchFiles(term: string): Observable<File[]> {
+  searchTypes(term: string): Observable<Type[]> {
     if (!term.trim()) {
       // if not search term, return empty file array.
       return of([]);
     }
-    return this.http.get<File[]>(`${this.filesUrl}/?name=${term}`).pipe(
-      catchError(this.handleError<File[]>('searchFiles', []))
+    return this.http.get<Type[]>(`${this.typesUrl}/?name=${term}`).pipe(
+      catchError(this.handleError<Type[]>('searchTypes', []))
     );
   }
 
   //////// Save methods //////////
 
   /** POST: add a new file to the server */
-  addFile(file: File): Observable<File> {
-    return this.http.post<File>(this.filesUrl, file, this.httpOptions).pipe(
-      catchError(this.handleError<File>('addFile'))
+  addType(file: Type): Observable<Type> {
+    return this.http.post<Type>(this.typesUrl, file, this.httpOptions).pipe(
+      catchError(this.handleError<Type>('addType'))
     );
   }
 
   /** DELETE: delete the file from the server */
-  deleteFile(id: number): Observable<File> {
-    const url = `${this.filesUrl}/${id}`;
+  deleteType(id: number): Observable<Type> {
+    const url = `${this.typesUrl}/${id}`;
 
-    return this.http.delete<File>(url, this.httpOptions).pipe(
-      catchError(this.handleError<File>('deleteFile'))
+    return this.http.delete<Type>(url, this.httpOptions).pipe(
+      catchError(this.handleError<Type>('deleteType'))
     );
   }
 
   /** PUT: update the file on the server */
-  updateFile(file: File): Observable<any> {
-    return this.http.put(`${this.filesUrl}/${file.id}`, file, this.httpOptions).pipe(
-      catchError(this.handleError<any>('updateFile'))
+  updateType(file: Type): Observable<any> {
+    return this.http.put(`${this.typesUrl}/${file.id}`, file, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateType'))
     );
   }
 
