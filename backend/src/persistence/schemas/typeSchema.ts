@@ -3,7 +3,7 @@ import { ITypePersistence } from "../../dataschema/ITypePersistence";
 
 const TypeSchema = new mongoose.Schema (
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     extension: { type: String, required: true }
   },
   {

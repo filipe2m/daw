@@ -17,6 +17,7 @@ export class App {
     this.routes.user.routes(this.app);
     this.routes.file.routes(this.app);
     this.routes.type.routes(this.app);
+    this.routes.category.routes(this.app);
   }
 
   private config(): void {
