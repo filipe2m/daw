@@ -14,7 +14,6 @@ export class User {
 
     public static create(userDTO: IUserDTO | IUserPersistence ): User {
         if (
-            userDTO.name &&
             userDTO.email &&
             userDTO.password
         ) {
