@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import IUserDTO from "../dto/IUserDTO";
 
 export class UserController {
 
