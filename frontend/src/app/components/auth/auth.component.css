@@ -1,0 +1,47 @@
+:host {
+  display: flex;
+  justify-content: center;
+  height: 80%;
+  margin: 0px;
+}
+
+mat-toolbar {
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -6px black;
+}
+
+mat-card {
+  padding: 0;
+  margin: 30vh 0px;
+}
+
+.form {
+  width: 350px;
+  padding: 25px;
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
+}
+
+mat-card-title {
+  text-align: left;
+  width: 100%;
+  display: block;
+  font-weight: 400;
+  margin: 0;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}

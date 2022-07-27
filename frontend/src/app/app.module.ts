@@ -24,6 +24,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CategoriesCreateComponent } from './components/categories-create/categories-create.component'
 import { CategoriesUpdateComponent } from './components/categories-update/categories-update.component'
 
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CategoriesUpdateComponent } from './components/categories-update/catego
     TypesCreateComponent,
     CategoriesComponent,
     CategoriesCreateComponent,
-    CategoriesUpdateComponent
+    CategoriesUpdateComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
