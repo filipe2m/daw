@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Type } from '../interfaces/type';
+import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class TypesService {
@@ -12,16 +13,20 @@ export class TypesService {
   private typesUrl = 'http://localhost:3200/api/types';
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken()}`
+    })
   };
 
   constructor(
     private http: HttpClient,
+    private authService: AuthService
   ) { }
 
-  /** GET filees from the server */
+  /** GET files from the server */
   getTypes(): Observable<Type[]> {
-    return this.http.get<Type[]>(this.typesUrl)
+    return this.http.get<Type[]>(this.typesUrl, this.httpOptions)
       .pipe(
         catchError(this.handleError<Type[]>('getTypes', []))
       );
@@ -30,7 +35,7 @@ export class TypesService {
   /** GET file by id. Return `undefined` when id not found */
   getTypeNo404<Data>(id: number): Observable<Type> {
     const url = `${this.typesUrl}/?id=${id}`;
-    return this.http.get<Type[]>(url)
+    return this.http.get<Type[]>(url, this.httpOptions)
       .pipe(
         map(types => types[0]), // returns a {0|1} element array
         catchError(this.handleError<Type>(`getType id=${id}`))
@@ -40,7 +45,7 @@ export class TypesService {
   /** GET file by id. Will 404 if id not found */
   getType(id: number): Observable<Type> {
     const url = `${this.typesUrl}/${id}`;
-    return this.http.get<Type>(url).pipe(
+    return this.http.get<Type>(url, this.httpOptions).pipe(
       catchError(this.handleError<Type>(`getType id=${id}`))
     );
   }
@@ -51,7 +56,7 @@ export class TypesService {
       // if not search term, return empty file array.
       return of([]);
     }
-    return this.http.get<Type[]>(`${this.typesUrl}/?name=${term}`).pipe(
+    return this.http.get<Type[]>(`${this.typesUrl}/?name=${term}`, this.httpOptions).pipe(
       catchError(this.handleError<Type[]>('searchTypes', []))
     );
   }

@@ -20,11 +20,11 @@ export class MongoUserRepository implements IUserRepository {
     }
   }
 
-  async signin(user: User): Promise<any> {
-    console.log("MongoUserRepository: signin: " + JSON.stringify(user));
+  async signin(email: string): Promise<any> {
+    console.log("MongoUserRepository: signin: " + JSON.stringify(email));
 
     try {
-      let result = await userSchema.findOne({ email: user.email, password: user.password });
+      let result = await userSchema.findOne({ email: email });
       if (result === null) throw new Error("Invalid email or password");
       return UserMapper.toDomain(result);
     } catch (err) {

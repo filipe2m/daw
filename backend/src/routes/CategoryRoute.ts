@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { CategoryController } from "../controllers/CategoryController";
+import verifyToken from "../middleware/verifyJWT";
 
 export class CategoryRoute {
   private controller: CategoryController;
@@ -9,10 +10,10 @@ export class CategoryRoute {
   }
 
   routes(app: Router) {
-    app.post("/api/categories", this.controller.create);
-    app.get("/api/categories", this.controller.getAll);
-    app.get("/api/categories/:id", this.controller.get);
-    app.put("/api/categories/:id", this.controller.update);
-    app.delete("/api/categories/:id", this.controller.delete);
+    app.post("/api/categories", verifyToken, this.controller.create);
+    app.get("/api/categories", verifyToken, this.controller.getAll);
+    app.get("/api/categories/:id", verifyToken, this.controller.get);
+    app.put("/api/categories/:id", verifyToken, this.controller.update);
+    app.delete("/api/categories/:id", verifyToken, this.controller.delete);
   }
 }

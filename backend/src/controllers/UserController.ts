@@ -24,7 +24,7 @@ export class UserController {
     let userDto: IUserDTO = req.body;
     console.log("UserController: signin: " + JSON.stringify(req.params.body));
     try {
-      let result = await this.service.signIn(userDto);
+      let result = await this.service.signIn(userDto.email, userDto.password);
       res.status(201).send(result);
     } catch (err: any) {
       res.status(500).send(err.message);

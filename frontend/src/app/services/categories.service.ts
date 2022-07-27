@@ -6,22 +6,28 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Category } from '../interfaces/category';
 
+import { AuthService } from "../services/auth.service";
+
 @Injectable({ providedIn: 'root' })
 export class CategoriesService {
 
   private categoriesUrl = 'http://localhost:3200/api/categories';
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Category': 'application/json' })
+    headers: new HttpHeaders({
+      'Content-Category': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken()}`
+    })
   };
 
   constructor(
     private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   /** GET filees from the server */
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.categoriesUrl)
+    return this.http.get<Category[]>(this.categoriesUrl, this.httpOptions)
       .pipe(
         catchError(this.handleError<Category[]>('getCategories', []))
       );
@@ -30,7 +36,7 @@ export class CategoriesService {
   /** GET file by id. Return `undefined` when id not found */
   getCategoryNo404<Data>(id: number): Observable<Category> {
     const url = `${this.categoriesUrl}/?id=${id}`;
-    return this.http.get<Category[]>(url)
+    return this.http.get<Category[]>(url, this.httpOptions)
       .pipe(
         map(categories => categories[0]), // returns a {0|1} element array
         catchError(this.handleError<Category>(`getCategory id=${id}`))
@@ -40,7 +46,7 @@ export class CategoriesService {
   /** GET file by id. Will 404 if id not found */
   getCategory(id: number): Observable<Category> {
     const url = `${this.categoriesUrl}/${id}`;
-    return this.http.get<Category>(url).pipe(
+    return this.http.get<Category>(url, this.httpOptions).pipe(
       catchError(this.handleError<Category>(`getCategory id=${id}`))
     );
   }
@@ -51,7 +57,7 @@ export class CategoriesService {
       // if not search term, return empty file array.
       return of([]);
     }
-    return this.http.get<Category[]>(`${this.categoriesUrl}/?name=${term}`).pipe(
+    return this.http.get<Category[]>(`${this.categoriesUrl}/?name=${term}`, this.httpOptions).pipe(
       catchError(this.handleError<Category[]>('searchCategories', []))
     );
   }

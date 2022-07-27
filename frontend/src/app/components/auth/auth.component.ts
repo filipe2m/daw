@@ -34,8 +34,8 @@ export class AuthComponent implements OnInit {
 
     this.authService.signin(email, password).subscribe(response => {
       if(response){
-        localStorage.setItem('user', response.email);
-        this.router.navigate(['/file']);
+        localStorage.setItem('user', response.accessToken);
+        this.router.navigateByUrl('/files');
       }
     });
 

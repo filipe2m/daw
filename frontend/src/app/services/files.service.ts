@@ -6,22 +6,28 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { File } from '../interfaces/file';
 
+import { AuthService } from "../services/auth.service";
+
 @Injectable({ providedIn: 'root' })
 export class FilesService {
 
   private filesUrl = 'http://localhost:3200/api/files';
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken()}`
+    })
   };
 
   constructor(
     private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   /** GET filees from the server */
   getFiles(): Observable<File[]> {
-    return this.http.get<File[]>(this.filesUrl)
+    return this.http.get<File[]>(this.filesUrl, this.httpOptions)
       .pipe(
         catchError(this.handleError<File[]>('getFiles', []))
       );
@@ -30,7 +36,7 @@ export class FilesService {
   /** GET file by id. Return `undefined` when id not found */
   getFileNo404<Data>(id: number): Observable<File> {
     const url = `${this.filesUrl}/?id=${id}`;
-    return this.http.get<File[]>(url)
+    return this.http.get<File[]>(url, this.httpOptions)
       .pipe(
         map(files => files[0]), // returns a {0|1} element array
         catchError(this.handleError<File>(`getFile id=${id}`))
@@ -40,7 +46,7 @@ export class FilesService {
   /** GET file by id. Will 404 if id not found */
   getFile(id: number): Observable<File> {
     const url = `${this.filesUrl}/${id}`;
-    return this.http.get<File>(url).pipe(
+    return this.http.get<File>(url, this.httpOptions).pipe(
       catchError(this.handleError<File>(`getFile id=${id}`))
     );
   }
@@ -51,7 +57,7 @@ export class FilesService {
       // if not search term, return empty file array.
       return of([]);
     }
-    return this.http.get<File[]>(`${this.filesUrl}/?name=${term}`).pipe(
+    return this.http.get<File[]>(`${this.filesUrl}/?name=${term}`, this.httpOptions).pipe(
       catchError(this.handleError<File[]>('searchFiles', []))
     );
   }

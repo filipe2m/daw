@@ -24,4 +24,8 @@ export class AuthService {
   isLogged(): any {
     return !!localStorage.getItem('user');
   }
+
+  getToken(): string|null {
+    return localStorage.getItem('user');
+  }
 }
