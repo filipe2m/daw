@@ -1,5 +1,5 @@
 export interface File {
-  id: string;
+  id?: string;
   name: string;
   type: string;
   category: string;

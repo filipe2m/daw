@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { File } from '../interfaces/user';
+import { File } from '../interfaces/file';
 
 @Injectable({ providedIn: 'root' })
 export class FilesService {
@@ -66,7 +66,7 @@ export class FilesService {
   }
 
   /** DELETE: delete the file from the server */
-  deleteFile(id: number): Observable<File> {
+  deleteFile(id: string): Observable<File> {
     const url = `${this.filesUrl}/${id}`;
 
     return this.http.delete<File>(url, this.httpOptions).pipe(

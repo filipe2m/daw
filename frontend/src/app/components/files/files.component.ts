@@ -4,9 +4,11 @@ import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 
-import { File } from 'src/app/interfaces/user';
+import { File } from 'src/app/interfaces/file';
 import { FilesService } from 'src/app/services/files.service';
+import { FilesCreateComponent } from '../../components/files-create/files-create.component';
 import { FilesUpdateComponent } from '../../components/files-update/files-update.component';
+import { FilesDeleteComponent } from '../../components/files-delete/files-delete.component';
 
 @Component({
   selector: 'app-files',
@@ -14,7 +16,7 @@ import { FilesUpdateComponent } from '../../components/files-update/files-update
   styleUrls: ['./files.component.css'],
 })
 export class FilesComponent implements AfterViewInit {
-  displayedColumns: string[] = ['line', 'name', 'type', 'category', 'update'];
+  displayedColumns: string[] = ['line', 'name', 'type', 'category', 'update', 'delete'];
   ELEMENT_DATA:File[] = [];
   dataSource:any;
 
@@ -39,6 +41,16 @@ export class FilesComponent implements AfterViewInit {
     });
   }
 
+  openDialogCreate(): void {
+    const dialogRef = this.dialog.open(FilesCreateComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.create(result);
+    });
+  }
+
   openDialog(file: File): void {
     const dialogRef = this.dialog.open(FilesUpdateComponent, {
       width: '250px',
@@ -50,9 +62,38 @@ export class FilesComponent implements AfterViewInit {
     });
   }
 
+  openDialogDelete(file: File): void {
+    const dialogRef = this.dialog.open(FilesDeleteComponent, {
+      width: '250px',
+      data: file
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.delete(result);
+    });
+  }
+
+  create(file: File): void {
+    if (file) {
+      this.filesService.addFile(file)
+        .subscribe(() => {
+          this.getFiles();
+        });
+      }
+  }
+
   save(file: File): void {
     if (file) {
       this.filesService.updateFile(file)
+        .subscribe(() => {
+          this.getFiles();
+        });
+      }
+  }
+
+  delete(file: File): void {
+    if (file) {
+      this.filesService.deleteFile(file.id!)
         .subscribe(() => {
           this.getFiles();
         });

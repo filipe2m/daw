@@ -11,14 +11,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { FilesComponent } from './components/files/files.component';
+import { FilesCreateComponent } from './components/files-create/files-create.component'
 import { FilesUpdateComponent } from './components/files-update/files-update.component'
+import { FilesDeleteComponent } from './components/files-delete/files-delete.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     FilesComponent,
-    FilesUpdateComponent
+    FilesCreateComponent,
+    FilesUpdateComponent,
+    FilesDeleteComponent
   ],
   imports: [
     BrowserModule,
