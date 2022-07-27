@@ -1,5 +1,6 @@
-<h1 mat-dialog-title>{{ "New Category" | uppercase }}</h1>
+<h1 mat-dialog-title>{{ data.name | uppercase }}</h1>
 <div mat-dialog-content>
+  <p>ID: {{ data.id }}</p>
   <p>
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
@@ -8,8 +9,8 @@
   </p>
   <p>
     <mat-form-field appearance="fill">
-      <mat-label>Extension</mat-label>
-      <input matInput [(ngModel)]="data.extension" />
+      <mat-label>Types</mat-label>
+      <input matInput [(ngModel)]="data.types" />
     </mat-form-field>
   </p>
 </div>

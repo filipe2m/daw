@@ -20,6 +20,10 @@ import { TypesComponent } from './components/types/types.component';
 import { TypesCreateComponent } from './components/types-create/types-create.component'
 import { TypesUpdateComponent } from './components/types-update/types-update.component'
 
+import { CategoriesComponent } from './components/categories/categories.component';
+import { CategoriesCreateComponent } from './components/categories-create/categories-create.component'
+import { CategoriesUpdateComponent } from './components/categories-update/categories-update.component'
+
 
 @NgModule({
   declarations: [
@@ -31,7 +35,10 @@ import { TypesUpdateComponent } from './components/types-update/types-update.com
     FilesDeleteComponent,
     TypesComponent,
     TypesUpdateComponent,
-    TypesCreateComponent
+    TypesCreateComponent,
+    CategoriesComponent,
+    CategoriesCreateComponent,
+    CategoriesUpdateComponent
   ],
   imports: [
     BrowserModule,
