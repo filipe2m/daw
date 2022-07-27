@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>{{ data.name | uppercase }}</h1>
+<div mat-dialog-content>
+  <p>ID: {{ data.id }}</p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="data.name" />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Extension</mat-label>
+      <input matInput [(ngModel)]="data.extension" />
+    </mat-form-field>
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Close</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div>

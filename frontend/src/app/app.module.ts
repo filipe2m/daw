@@ -10,10 +10,16 @@ import { AngularMaterialModule } from './angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+
 import { FilesComponent } from './components/files/files.component';
 import { FilesCreateComponent } from './components/files-create/files-create.component'
 import { FilesUpdateComponent } from './components/files-update/files-update.component'
 import { FilesDeleteComponent } from './components/files-delete/files-delete.component'
+
+import { TypesComponent } from './components/types/types.component';
+import { TypesCreateComponent } from './components/types-create/types-create.component'
+import { TypesUpdateComponent } from './components/types-update/types-update.component'
+
 
 @NgModule({
   declarations: [
@@ -22,7 +28,10 @@ import { FilesDeleteComponent } from './components/files-delete/files-delete.com
     FilesComponent,
     FilesCreateComponent,
     FilesUpdateComponent,
-    FilesDeleteComponent
+    FilesDeleteComponent,
+    TypesComponent,
+    TypesUpdateComponent,
+    TypesCreateComponent
   ],
   imports: [
     BrowserModule,

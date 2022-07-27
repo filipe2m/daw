@@ -1,5 +1,5 @@
 export interface Type {
-  id: string;
+  id?: string;
   name: string;
   extension: string;
 }

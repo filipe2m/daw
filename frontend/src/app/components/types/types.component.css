@@ -1,0 +1,29 @@
+mat-toolbar {
+  background-color: #5363bd;
+}
+
+mat-toolbar h1 {
+  margin-left: 15px;
+  color: #fff;
+  font-size: larger;
+  font-weight: normal;
+}
+
+mat-toolbar section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+mat-toolbar section button {
+  margin-right: 2rem;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}

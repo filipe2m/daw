@@ -1,1 +1,65 @@
-<p>types works!</p>
+<mat-toolbar>
+  <section>
+    <h1>Types</h1>
+    <div>
+      <button mat-fab aria-label="Create File" (click)="openDialogCreate()">
+        <mat-icon>note_add</mat-icon>
+      </button>
+    </div>
+  </section>
+</mat-toolbar>
+
+<table
+  mat-table
+  [dataSource]="dataSource"
+  matSort
+  (matSortChange)="announceSortChange($event)"
+  class="mat-elevation-z8"
+>
+  <!-- ID Column -->
+  <ng-container matColumnDef="line">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element; let index = index">
+      {{ index + 1 }}
+    </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th
+      mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header
+      sortActionDescription="Sort by name"
+    >
+      Name
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <!-- Type Column -->
+  <ng-container matColumnDef="extension">
+    <th
+      mat-header-cell
+      *matHeaderCellDef
+      mat-sort-header
+      sortActionDescription="Sort by extension"
+    >
+      Extension
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.extension }}</td>
+  </ng-container>
+
+  <!-- Update Column -->
+  <ng-container matColumnDef="update">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-flat-button color="primary" (click)="openDialog(element)">
+        Update
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
