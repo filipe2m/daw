@@ -35,6 +35,13 @@ export class TypeService {
     return TypeMapper.toDTO(result);
   }
 
+  async getByName(name: string) {
+    console.log("TypeService: getByName: " + name);
+
+    let result = await this.repository.getByName(name);
+    return TypeMapper.toDTO(result);
+  }
+
   async update(id: string, typeDto: ITypeDTO) {
     console.log("TypeService: update " + id + ": " + JSON.stringify(typeDto));
 

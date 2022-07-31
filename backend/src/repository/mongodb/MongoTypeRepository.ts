@@ -45,6 +45,18 @@ export class MongoTypeRepository implements ITypeRepository {
         throw err;
     }
   }
+
+  async getByName(name: string): Promise<Type> {
+    console.log("MongoTypeRepository: getByName: " + name);
+
+    try{
+      let result = await typeSchema.findOne({name: name});
+      if(result === null) throw new Error("Could't find a type");
+      return TypeMapper.toDomain(result);
+    }catch(err){
+      throw err;
+    }
+  }
   
   async update(id: string, type: Type): Promise<Type> {
     console.log("MongoTypeRepository: update: " + JSON.stringify(type));

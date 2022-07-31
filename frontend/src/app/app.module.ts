@@ -26,6 +26,7 @@ import { TypesUpdateComponent } from './components/types-update/types-update.com
 import { CategoriesComponent } from './components/categories/categories.component';
 import { CategoriesCreateComponent } from './components/categories-create/categories-create.component'
 import { CategoriesUpdateComponent } from './components/categories-update/categories-update.component'
+import { FooterComponent } from '../app/components/footer/footer.component'
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CategoriesUpdateComponent } from './components/categories-update/catego
     TypesCreateComponent,
     CategoriesComponent,
     CategoriesCreateComponent,
-    CategoriesUpdateComponent
+    CategoriesUpdateComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

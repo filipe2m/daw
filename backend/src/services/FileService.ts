@@ -1,7 +1,9 @@
 import { FileRepositoryFactory } from "../repository/FileRepositoryFactory";
 import IFileRepository from "../repository/IFileRepository";
 import IFileDTO from "../dto/IFileDTO";
+import ITypeDTO from "../dto/ITypeDTO";
 import { FileMapper } from "../mappers/FileMapper";
+import { TypeService } from "./TypeService";
 
 export class FileService {
   private repository: IFileRepository;
@@ -12,6 +14,17 @@ export class FileService {
 
   async create(fileDto: IFileDTO) {
     console.log("FileService: createFile: " + JSON.stringify(fileDto));
+
+    const typeService: TypeService = new TypeService();
+    try{
+      const typeExists = await typeService.getByName(fileDto.type);
+    }catch(error){
+      const name = fileDto.type;
+      const extension = '.'+fileDto.type.toLocaleLowerCase();
+      const type: ITypeDTO = {name, extension};
+      await typeService.create(type);
+    }
+
     let fileDomain = FileMapper.toDomain(fileDto);
     let result = await this.repository.create(fileDomain);
     return FileMapper.toDTO(result);

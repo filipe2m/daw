@@ -1,0 +1,19 @@
+.container {
+  height: auto;
+  padding-bottom: 50px;
+}
+
+mat-toolbar {
+  position: fixed;
+  height: 50px;
+  bottom: 0; /* Sets the sticky toolbar to be on bottom */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+  font-size: 1rem;
+}
+
+.icon {
+  padding: 0 14px;
+}
+.spacer {
+  flex: 1 1 auto;
+}

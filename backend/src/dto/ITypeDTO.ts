@@ -1,5 +1,5 @@
 export default interface ITypeDTO {
-  id: string,
+  id?: string,
   name: string,
   extension: string
 };

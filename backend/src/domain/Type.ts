@@ -18,7 +18,7 @@ export class Type {
             typeDTO.extension
         ) {
           return new Type(
-            typeDTO.id,
+            typeDTO.id!,
             typeDTO.name,
             typeDTO.extension
           );
