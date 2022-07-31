@@ -3,17 +3,13 @@
   <p>
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
-      <input matInput [(ngModel)]="data.name" />
+      <input matInput [(ngModel)]="data.name" disabled="disable" />
     </mat-form-field>
   </p>
   <p>
     <mat-form-field appearance="fill">
       <mat-label>Type</mat-label>
-      <mat-select [(ngModel)]="data.type">
-        <mat-option *ngFor="let type of types" value="{{ type.name }}">
-          {{ type.name }}
-        </mat-option>
-      </mat-select>
+      <input matInput [(ngModel)]="data.type" disabled="disable" />
     </mat-form-field>
   </p>
   <p>

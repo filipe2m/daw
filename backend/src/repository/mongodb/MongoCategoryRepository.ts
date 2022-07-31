@@ -55,7 +55,7 @@ export class MongoCategoryRepository implements ICategoryRepository {
       const updateObj = {
         $set: {
           name: categoryDataModel.name,
-          types: categoryDataModel.types
+          icon: categoryDataModel.icon
         },
       };
 

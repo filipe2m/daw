@@ -8,8 +8,14 @@
   </p>
   <p>
     <mat-form-field appearance="fill">
-      <mat-label>Types</mat-label>
-      <input matInput [(ngModel)]="data.types" />
+      <!-- <mat-label>Icon</mat-label>
+      <input matInput [(ngModel)]="data.icon" /> -->
+      <mat-label>Icon</mat-label>
+      <mat-select [(ngModel)]="data.icon">
+        <mat-option *ngFor="let icon of icons" value="{{ icon }}">
+          <mat-icon color="primary">{{ icon }}</mat-icon> {{ icon }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </p>
 </div>

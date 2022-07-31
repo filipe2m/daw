@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export interface DialogData {
   id: string;
   name: string;
-  types: Array<string>;
+  icon: string;
 }
 
 @Component({
@@ -13,6 +13,21 @@ export interface DialogData {
   styleUrls: ['./categories-update.component.css']
 })
 export class CategoriesUpdateComponent implements OnInit {
+  icons: Array<string> = [
+    'movie',
+    'videocam',
+    'flag',
+    'link',
+    'mail',
+    'storage',
+    'attachment',
+    'folder',
+    'computer',
+    'camera',
+    'collections',
+  ];
+  selectedIcon: string = this.data.icon;
+
   constructor(
     private dialogRef: MatDialogRef<CategoriesUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,

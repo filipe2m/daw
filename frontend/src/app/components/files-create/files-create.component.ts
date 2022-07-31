@@ -58,14 +58,14 @@ export class FilesCreateComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
-    // const index = event.target.files[0].name.lastIndexOf('.');
+    const index = event.target.files[0].name.lastIndexOf('.');
 
-    // const file = { name: '', type: '' };
-    // file.name = event.target.files[0].name.slice(0, index);
-    // file.type = event.target.files[0].name.slice(index + 1).toUpperCase();
+    const file = { name: '', type: '' };
+    file.name = event.target.files[0].name.slice(0, index);
+    file.type = event.target.files[0].name.slice(index + 1).toUpperCase();
 
-    // this.data.name = file.name;
-    // this.data.type = file.type;
+    this.data.name = file.name;
+    this.data.type = file.type;
 
     this.data.file = event.target.files[0];
   }

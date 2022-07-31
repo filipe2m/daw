@@ -7,7 +7,7 @@ import { CategoriesService } from '../../services/categories.service';
 export interface DialogData {
   id: string;
   name: string;
-  types: Array<string>;
+  icon: string;
 }
 
 @Component({
@@ -16,7 +16,21 @@ export interface DialogData {
   styleUrls: ['./categories-create.component.css']
 })
 export class CategoriesCreateComponent implements OnInit {
-  data:Category = { name: '', types:[]}
+  data:Category = { name: '', icon: ''}
+  icons: Array<string> = [
+    'movie',
+    'videocam',
+    'flag',
+    'link',
+    'mail',
+    'storage',
+    'attachment',
+    'folder',
+    'computer',
+    'camera',
+    'collections',
+
+  ];
 
 
   constructor(

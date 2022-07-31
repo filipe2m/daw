@@ -4,7 +4,7 @@ import { ICategoryPersistence } from "../../dataschema/ICategoryPersistence";
 const CategorySchema = new mongoose.Schema (
   {
     name: { type: String, required: true, unique: true },
-    types: { type: Array<string>, required: true }
+    icon: { type: String, required: true }
   },
   {
     timestamps: true,

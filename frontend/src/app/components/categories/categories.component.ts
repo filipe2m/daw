@@ -15,7 +15,7 @@ import { CategoriesUpdateComponent } from '../../components/categories-update/ca
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements AfterViewInit {
-  displayedColumns: string[] = ['line', 'name', 'types', 'update'];
+  displayedColumns: string[] = ['line', 'name', 'icon', 'update'];
   ELEMENT_DATA:Category[] = [];
   dataSource:any;
 

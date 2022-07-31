@@ -7,7 +7,7 @@ export class CategoryMapper {
     return {
       id: category._id,
       name: category.name,
-      types: category.types
+      icon: category.icon
     } as ICategoryDTO;
   }
 
@@ -15,7 +15,7 @@ export class CategoryMapper {
     return {
       id: category._id,
       name: category.name,
-      types: category.types
+      icon: category.icon
     } as ICategoryPersistence;
   }
 
