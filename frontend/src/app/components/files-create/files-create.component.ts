@@ -8,6 +8,7 @@ import { TypesService } from '../../services/types.service';
 
 import { Category } from '../../interfaces/category'
 import { CategoriesService } from '../../services/categories.service';
+import { HttpClient } from '@angular/common/http';
 
 export interface DialogData {
   id: string;
@@ -22,7 +23,7 @@ export interface DialogData {
   styleUrls: ['./files-create.component.css']
 })
 export class FilesCreateComponent implements OnInit {
-  data:File = { name: '', category: '', type:''}
+  data:File = { name: '', type:'', category: '', file: '' }
 
   types: Type[] = [];
   selectedType = this.data.type;
@@ -56,7 +57,29 @@ export class FilesCreateComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: any) {
+    // const index = event.target.files[0].name.lastIndexOf('.');
+
+    // const file = { name: '', type: '' };
+    // file.name = event.target.files[0].name.slice(0, index);
+    // file.type = event.target.files[0].name.slice(index + 1).toUpperCase();
+
+    // this.data.name = file.name;
+    // this.data.type = file.type;
+
+    this.data.file = event.target.files[0];
+  }
+
   closeDialog(): void {
-    this.dialogRef.close(this.data);
+    this.dialogRef.close();
+  }
+
+  submitDialog(): void {
+    const formData: FormData = new FormData();
+    formData.append('name', this.data.name);
+    formData.append('type', this.data.type);
+    formData.append('category', this.data.category);
+    formData.append('file', this.data.file, this.data.file.name!);
+    this.dialogRef.close(formData);
   }
 }

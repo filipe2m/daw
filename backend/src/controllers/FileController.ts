@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import IFileDTO from "../dto/IFileDTO";
 import { FileService } from "../services/FileService";
 
+
 export class FileController {
   private service: FileService;
 
@@ -10,8 +11,12 @@ export class FileController {
   }
 
   create = async (req: Request, res: Response, next: NextFunction) => {
+    console.log("FileController: create: " + JSON.stringify(req.body));
+    console.log("FileController: upload: " + JSON.stringify(req.file));
+
     let fileDto: IFileDTO = req.body;
-    console.log("FileController: create: " + JSON.stringify(fileDto));
+    fileDto.path = req.file?.path!;
+    
     try {
       let result = await this.service.create(fileDto);
       res.status(201).send(result);

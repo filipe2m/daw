@@ -3,4 +3,5 @@ export interface IFilePersistence {
   name: string;
   type: string;
   category: string;
+  path: string;
 }

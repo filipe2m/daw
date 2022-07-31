@@ -22,6 +22,7 @@ export class App {
 
   private config(): void {
     this.app.use(cors());
+    this.app.use('/public/uploads', express.static('public/uploads'))
     this.app.use(express.json());
   }
 

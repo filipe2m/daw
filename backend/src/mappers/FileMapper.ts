@@ -8,7 +8,8 @@ export class FileMapper {
       id: file._id,
       name: file.name,
       type: file.type,
-      category: file.category
+      category: file.category,
+      path: file.path
     } as IFileDTO;
   }
 
@@ -18,6 +19,7 @@ export class FileMapper {
       name: file.name,
       type: file.type,
       category: file.category,
+      path: file.path
     } as IFilePersistence;
   }
 

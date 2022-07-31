@@ -3,4 +3,6 @@ export interface File {
   name: string;
   type: string;
   category: string;
+  path?: string;
+  file?: any;
 }

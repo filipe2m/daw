@@ -9,6 +9,8 @@ import { FilesService } from 'src/app/services/files.service';
 import { FilesCreateComponent } from '../../components/files-create/files-create.component';
 import { FilesUpdateComponent } from '../../components/files-update/files-update.component';
 import { FilesDeleteComponent } from '../../components/files-delete/files-delete.component';
+import { CategoriesService } from 'src/app/services/categories.service';
+import { Category } from '../../interfaces/category';
 
 @Component({
   selector: 'app-files',
@@ -16,12 +18,15 @@ import { FilesDeleteComponent } from '../../components/files-delete/files-delete
   styleUrls: ['./files.component.css'],
 })
 export class FilesComponent implements AfterViewInit {
-  displayedColumns: string[] = ['line', 'name', 'type', 'category', 'update', 'delete'];
+  displayedColumns: string[] = ['line', 'name', 'type', 'category', 'download','update', 'delete'];
   ELEMENT_DATA:File[] = [];
   dataSource:any;
 
+  CATEGORIES_DATA: Category[] = [];
+
   constructor(
     private filesService: FilesService,
+    private categoriesService: CategoriesService,
     private _liveAnnouncer: LiveAnnouncer,
     private dialog: MatDialog
   ) {}
@@ -30,6 +35,7 @@ export class FilesComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.getFiles();
+    this.getCategories();
   }
 
   getFiles(): void {
@@ -38,6 +44,13 @@ export class FilesComponent implements AfterViewInit {
       this.ELEMENT_DATA = files;
       this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
       this.dataSource.sort = this.sort;
+    });
+  }
+
+  getCategories(): void {
+    this.categoriesService.getCategories()
+    .subscribe((categories) => {
+      this.CATEGORIES_DATA = categories;
     });
   }
 
@@ -73,7 +86,7 @@ export class FilesComponent implements AfterViewInit {
     });
   }
 
-  create(file: File): void {
+  create(file: any): void {
     if (file) {
       this.filesService.addFile(file)
         .subscribe(() => {

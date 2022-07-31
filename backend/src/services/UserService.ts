@@ -34,7 +34,7 @@ export class UserService {
                 throw new Error('Email and/or Password Invalid.')
             } else {
                 const tokenData= {user:user.email};                 
-                const accessToken = jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET!, {expiresIn:"15m"});
+                const accessToken = jwt.sign(tokenData, process.env.ACCESS_TOKEN_SECRET!, {expiresIn:"30m"});
                 return ({email, accessToken});
             }
         }

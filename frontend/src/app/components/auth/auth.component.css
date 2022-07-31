@@ -5,15 +5,9 @@
   margin: 0px;
 }
 
-mat-toolbar {
-  -webkit-box-shadow: 0 8px 6px -6px black;
-  -moz-box-shadow: 0 8px 6px -6px black;
-  box-shadow: 0 8px 6px -6px black;
-}
-
 mat-card {
   padding: 0;
-  margin: 30vh 0px;
+  margin: 5rem 0px;
 }
 
 .form {
@@ -32,13 +26,6 @@ mat-card-title {
   display: block;
   font-weight: 400;
   margin: 0;
-}
-
-.error {
-  padding: 16px;
-  width: 300px;
-  color: white;
-  background-color: red;
 }
 
 .button {

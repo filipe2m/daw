@@ -20,6 +20,12 @@ export class FilesService {
     })
   };
 
+  httpOptions2 = {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`
+    })
+  };
+
   constructor(
     private http: HttpClient,
     private authService: AuthService
@@ -30,16 +36,6 @@ export class FilesService {
     return this.http.get<File[]>(this.filesUrl, this.httpOptions)
       .pipe(
         catchError(this.handleError<File[]>('getFiles', []))
-      );
-  }
-
-  /** GET file by id. Return `undefined` when id not found */
-  getFileNo404<Data>(id: number): Observable<File> {
-    const url = `${this.filesUrl}/?id=${id}`;
-    return this.http.get<File[]>(url, this.httpOptions)
-      .pipe(
-        map(files => files[0]), // returns a {0|1} element array
-        catchError(this.handleError<File>(`getFile id=${id}`))
       );
   }
 
@@ -65,9 +61,9 @@ export class FilesService {
   //////// Save methods //////////
 
   /** POST: add a new file to the server */
-  addFile(file: File): Observable<File> {
-    return this.http.post<File>(this.filesUrl, file, this.httpOptions).pipe(
-      catchError(this.handleError<File>('addFile'))
+  addFile(file: any): Observable<any> {
+    return this.http.post<any>(this.filesUrl, file, this.httpOptions2).pipe(
+      catchError(this.handleError<any>('addFile'))
     );
   }
 
