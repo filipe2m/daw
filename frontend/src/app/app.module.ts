@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AuthComponent } from './components/auth/auth.component';
+import { HomeComponent } from './components/home/home.component';
+
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 import { FilesComponent } from './components/files/files.component';
@@ -24,11 +27,11 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CategoriesCreateComponent } from './components/categories-create/categories-create.component'
 import { CategoriesUpdateComponent } from './components/categories-update/categories-update.component'
 
-import { AuthComponent } from './components/auth/auth.component';
-
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
+    HomeComponent,
     ToolbarComponent,
     FilesComponent,
     FilesCreateComponent,
@@ -39,8 +42,7 @@ import { AuthComponent } from './components/auth/auth.component';
     TypesCreateComponent,
     CategoriesComponent,
     CategoriesCreateComponent,
-    CategoriesUpdateComponent,
-    AuthComponent
+    CategoriesUpdateComponent
   ],
   imports: [
     BrowserModule,
